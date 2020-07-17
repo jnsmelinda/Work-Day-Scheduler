@@ -1,31 +1,27 @@
 const hours = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
 
 $(document).ready(function () {
-    let date = $("#currentDay").text(moment().format("MMMM Do YYYY"));
+    $("#currentDay").text(moment().format("LL"));
 
     for (let i = 0; i < hours.length; i++) {
-        const item = document.createElement("div");
-        $(item).attr("id", "calendarItem-" + i);
-        $(item).text(hours[i]);
-
-
-        const button = document.createElement("button");
-        button.id = "saveCalendarItem-" + i;
-        button.classList = "btn btn-primary btn-sm";
-        button.textContent = "save";
-        button.onclick = () => saveCalendarItem(i);
-        item.appendChild(button);
-
-        document.getElementById("calendarItems").appendChild(item);
+        $("#calendarItems").append(createCalendarItem(i));
     }
-
-    // $("li").each(function(i, element) {
-    //     const item = document.createElement("div");
-
-
-    //     $(element).text(hours[i]);
-    // });
 });
+
+function createCalendarItem(index) {
+    return $("<div>")
+        .attr("id", "calendarItem-" + index)
+        .text(hours[index])
+        .append(createButton(index));
+}
+
+function createButton(index) {
+    return $("<button>")
+        .addClass("btn btn-primary btn-sm")
+        .attr("id", "saveCalendarItem-" + index)
+        .text("save")
+        .click(() => saveCalendarItem(index));
+}
 
 function saveCalendarItem(calendarItemIndex) {
     console.log("Saving item at " + hours[calendarItemIndex]);
