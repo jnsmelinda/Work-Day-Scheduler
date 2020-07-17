@@ -14,10 +14,6 @@ textarea{
   padding: 10px;
 }
 
-button {
-    margin: 5px;
-}
-
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -78,6 +74,8 @@ button {
 .fa-trash {
     background-color: red;
     color: white;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 /* .fa-save {

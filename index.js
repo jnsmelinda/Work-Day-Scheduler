@@ -5,13 +5,13 @@ $(document).ready(function () {
     $("#currentDay").text(moment().format("LL"));
 
     for (let i = 0; i < hours.length; i++) {
-        $("#calendarItems").append(createCalendarItem(i));
+        $("#calendarItems").append(createCalendarItem(i)).addClass("time-block");
     }
 });
 
 function createCalendarItem(index) {
     return $("<div>")
-        .addClass("input-group")
+        .addClass("row input-group hour")
         .attr("id", "calendarItem-" + index)
         .text(hours[index])
         .append(createInput(index))
@@ -21,7 +21,7 @@ function createCalendarItem(index) {
 
 function createInput(index) {
     return $("<input>")
-        .addClass("form-control")
+        .addClass("form-control textarea")
         .attr("id", "saveCalendarItem-" + index)
         .text("input");
 }
