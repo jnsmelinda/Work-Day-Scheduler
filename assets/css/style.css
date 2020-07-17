@@ -2,6 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  padding-bottom: 40px;
 }
 
 textarea{
@@ -11,6 +12,10 @@ textarea{
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+}
+
+button {
+    margin: 5px;
 }
 
 .jumbotron {
@@ -57,7 +62,7 @@ textarea{
   color: white;
 }
 
-.saveBtn {
+.fa-save {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -69,3 +74,13 @@ textarea{
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
+
+.fa-trash {
+    background-color: red;
+    color: white;
+}
+
+/* .fa-save {
+    background-color: green;
+    color: white;
+} */

@@ -11,16 +11,25 @@ $(document).ready(function () {
 
 function createCalendarItem(index) {
     return $("<div>")
+        .addClass("input-group")
         .attr("id", "calendarItem-" + index)
         .text(hours[index])
-        .append(createButton(index));
+        .append(createInput(index))
+        .append(createButton(index, "fa-save"))
+        .append(createButton(index, "fa-trash"));
 }
 
-function createButton(index) {
-    return $("<button>")
-        .addClass("btn btn-primary btn-sm")
+function createInput(index) {
+    return $("<input>")
+        .addClass("form-control")
         .attr("id", "saveCalendarItem-" + index)
-        .text("save")
+        .text("input");
+}
+
+function createButton(index, icon) {
+    return $("<button>")
+        .addClass(`btn btn-sm fas ${icon}`)
+        .attr("id", "saveCalendarItem-" + index)
         .click(() => saveCalendarItem(index));
 }
 
