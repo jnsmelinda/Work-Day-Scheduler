@@ -11,8 +11,6 @@ const emptyCalendar = [
 ];
 
 let calendar = JSON.parse(localStorage.getItem("calendar")) || emptyCalendar;
-
-
 moment.locale(navigator.userLanguage || navigator.language);
 
 $(document).ready(function () {
@@ -35,9 +33,21 @@ function createCalendarItem(index) {
 
 function createInput(index) {
     return $("<input>")
-        .addClass("form-control")
         .attr("id", "input-" + index)
+        .addClass(`form-control textarea ${getTimeIndicator(index, moment().format("HH"))}`)
         .val(calendar[index].content);
+}
+
+function getTimeIndicator(index, currentHour) {
+    if (calendar[index].time.substring(0, 2) < currentHour) {
+        return "past";
+    }
+    else if (calendar[index].time.substring(0, 2) > currentHour) {
+        return "future";
+    }
+    else {
+        return "present";
+    }
 }
 
 function createSaveButton(index) {
@@ -68,4 +78,3 @@ function deleteCalendarItem(index) {
 function saveToLocalStorage() {
     localStorage.setItem("calendar", JSON.stringify(calendar));
 }
-

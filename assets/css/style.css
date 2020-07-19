@@ -26,9 +26,13 @@ textarea{
   white-space: pre-wrap;
 }
 
-.time-block{
+.time-block {
   text-align: center;
   border-radius: 15px;
+}
+
+.container {
+    text-align: center;
 }
 
 .row {
@@ -76,6 +80,10 @@ textarea{
     color: white;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+}
+
+button {
+    margin-top: 10px;
 }
 
 /* .fa-save {
