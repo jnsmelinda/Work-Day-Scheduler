@@ -1,39 +1,71 @@
+const emptyCalendar = [
+    { time: "09:00", content: "" },
+    { time: "10:00", content: "" },
+    { time: "11:00", content: "" },
+    { time: "12:00", content: "" },
+    { time: "13:00", content: "" },
+    { time: "14:00", content: "" },
+    { time: "15:00", content: "" },
+    { time: "16:00", content: "" },
+    { time: "17:00", content: "" }
+];
+
+let calendar = JSON.parse(localStorage.getItem("calendar")) || emptyCalendar;
+
+
 moment.locale(navigator.userLanguage || navigator.language);
-const hours = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
 
 $(document).ready(function () {
     $("#currentDay").text(moment().format("LL"));
 
-    for (let i = 0; i < hours.length; i++) {
+    for (let i = 0; i < calendar.length; i++) {
         $("#calendarItems").append(createCalendarItem(i)).addClass("time-block");
     }
 });
 
 function createCalendarItem(index) {
     return $("<div>")
-        .addClass("row input-group hour")
+        .addClass("input-group hour")
         .attr("id", "calendarItem-" + index)
-        .text(hours[index])
+        .text(calendar[index].time)
         .append(createInput(index))
-        .append(createButton(index, "fa-save"))
-        .append(createButton(index, "fa-trash"));
+        .append(createSaveButton(index))
+        .append(createDeleteButton(index));
 }
 
 function createInput(index) {
     return $("<input>")
-        .addClass("form-control textarea")
-        .attr("id", "saveCalendarItem-" + index)
-        .text("input");
+        .addClass("form-control")
+        .attr("id", "input-" + index)
+        .val(calendar[index].content);
 }
 
-function createButton(index, icon) {
+function createSaveButton(index) {
     return $("<button>")
-        .addClass(`btn btn-sm fas ${icon}`)
-        .attr("id", "saveCalendarItem-" + index)
+        .addClass("btn btn-sm fas fa-save")
+        .attr("id", "saveButton-" + index)
         .click(() => saveCalendarItem(index));
 }
 
-function saveCalendarItem(calendarItemIndex) {
-    console.log("Saving item at " + hours[calendarItemIndex]);
+function createDeleteButton(index) {
+    return $("<button>")
+        .addClass("btn btn-sm fas fa-trash")
+        .attr("id", "deleteButton-" + index)
+        .click(() => deleteCalendarItem(index));
+}
+
+function saveCalendarItem(index) {
+    calendar[index].content = $("#input-" + index).val();
+    saveToLocalStorage();
+}
+
+function deleteCalendarItem(index) {
+    calendar[index].content = "";
+    $("#input-" + index).val("");
+    saveToLocalStorage();
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem("calendar", JSON.stringify(calendar));
 }
 
