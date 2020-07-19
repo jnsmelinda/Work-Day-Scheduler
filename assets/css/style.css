@@ -31,10 +31,6 @@ textarea{
   border-radius: 15px;
 }
 
-.container {
-    text-align: center;
-}
-
 .row {
   white-space: pre-wrap;
   height: 80px;
@@ -80,10 +76,6 @@ textarea{
     color: white;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-}
-
-button {
-    margin-top: 10px;
 }
 
 /* .fa-save {
