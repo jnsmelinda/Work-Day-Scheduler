@@ -17,24 +17,30 @@ $(document).ready(function () {
     $("#currentDay").text(moment().format("LL"));
 
     for (let i = 0; i < calendar.length; i++) {
-        $("#calendarItems").append(createCalendarItem(i)).addClass("time-block");
+        $("#calendarContainer").append(createRow(i));
     }
 });
 
-function createCalendarItem(index) {
+function createRow(index){
     return $("<div>")
-        .addClass("input-group hour")
-        .attr("id", "calendarItem-" + index)
-        .text(calendar[index].time)
-        .append(createInput(index))
+        .attr("id", "row-" + index)
+        .addClass("row time-block")
+        .append(createTimeElement(index))
+        .append(createTextarea(index))
         .append(createSaveButton(index))
-        .append(createDeleteButton(index));
+        .append(createTrashButton(index));
 }
 
-function createInput(index) {
-    return $("<input>")
-        .attr("id", "input-" + index)
-        .addClass(`form-control textarea ${getTimeIndicator(index, moment().format("HH"))}`)
+function createTimeElement(index) {
+    return $("<div>")
+        .text(calendar[index].time)
+        .addClass("col-sm-1 hour");
+}
+
+function createTextarea(index) {
+    return $("<textarea>")
+        .attr("id", "textarea-" + index)
+        .addClass(`col-sm-9 ${getTimeIndicator(index, moment().format("HH"))}`)
         .val(calendar[index].content);
 }
 
@@ -52,26 +58,26 @@ function getTimeIndicator(index, currentHour) {
 
 function createSaveButton(index) {
     return $("<button>")
-        .addClass("btn btn-sm fas fa-save")
         .attr("id", "saveButton-" + index)
+        .addClass("col-sm-1 btn fa fa-save saveBtn")
         .click(() => saveCalendarItem(index));
 }
 
-function createDeleteButton(index) {
+function createTrashButton(index) {
     return $("<button>")
-        .addClass("btn btn-sm fas fa-trash")
-        .attr("id", "deleteButton-" + index)
+        .attr("id", "trashButton-" + index)
+        .addClass("col-sm-1 btn fa fa-trash trashBtn")
         .click(() => deleteCalendarItem(index));
 }
 
 function saveCalendarItem(index) {
-    calendar[index].content = $("#input-" + index).val();
+    calendar[index].content = $("#textarea-" + index).val();
     saveToLocalStorage();
 }
 
 function deleteCalendarItem(index) {
     calendar[index].content = "";
-    $("#input-" + index).val("");
+    $("#textarea-" + index).val("");
     saveToLocalStorage();
 }
 
