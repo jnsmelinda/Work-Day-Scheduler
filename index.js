@@ -1,19 +1,19 @@
 const emptyCalendar = [
-    { time: "09:00", content: "" },
-    { time: "10:00", content: "" },
-    { time: "11:00", content: "" },
-    { time: "12:00", content: "" },
-    { time: "13:00", content: "" },
-    { time: "14:00", content: "" },
-    { time: "15:00", content: "" },
-    { time: "16:00", content: "" },
-    { time: "17:00", content: "" }
+    {time: "09:00", content: ""},
+    {time: "10:00", content: ""},
+    {time: "11:00", content: ""},
+    {time: "12:00", content: ""},
+    {time: "13:00", content: ""},
+    {time: "14:00", content: ""},
+    {time: "15:00", content: ""},
+    {time: "16:00", content: ""},
+    {time: "17:00", content: ""}
 ];
 
-let calendar = JSON.parse(localStorage.getItem("calendar")) || emptyCalendar;
+const calendar = JSON.parse(localStorage.getItem("calendar")) || emptyCalendar;
 moment.locale(navigator.userLanguage || navigator.language);
 
-$(document).ready(function () {
+$(document).ready(function() {
     $("#currentDay").text(moment().format("LL"));
 
     for (let i = 0; i < calendar.length; i++) {
@@ -21,7 +21,7 @@ $(document).ready(function () {
     }
 });
 
-function createRow(index){
+function createRow(index) {
     return $("<div>")
         .attr("id", "row-" + index)
         .addClass(`row time-block ${getTimeIndicator(index, moment().format("HH"))}`)
@@ -47,11 +47,9 @@ function createTextarea(index) {
 function getTimeIndicator(index, currentHour) {
     if (calendar[index].time.substring(0, 2) < currentHour) {
         return "past";
-    }
-    else if (calendar[index].time.substring(0, 2) > currentHour) {
+    } else if (calendar[index].time.substring(0, 2) > currentHour) {
         return "future";
-    }
-    else {
+    } else {
         return "present";
     }
 }

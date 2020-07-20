@@ -1,0 +1,23 @@
+{
+  "name": "work-day-scheduler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnsmelinda/Work-Day-Scheduler.git"
+  },
+  "author": "Melinda Ivanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jnsmelinda/Work-Day-Scheduler/issues"
+  },
+  "homepage": "https://github.com/jnsmelinda/Work-Day-Scheduler#readme",
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
