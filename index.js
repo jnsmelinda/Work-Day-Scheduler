@@ -24,7 +24,7 @@ $(document).ready(function () {
 function createRow(index){
     return $("<div>")
         .attr("id", "row-" + index)
-        .addClass("row time-block")
+        .addClass(`row time-block ${getTimeIndicator(index, moment().format("HH"))}`)
         .append(createTimeElement(index))
         .append(createTextarea(index))
         .append(createSaveButton(index))
@@ -33,14 +33,14 @@ function createRow(index){
 
 function createTimeElement(index) {
     return $("<div>")
-        .text(calendar[index].time)
-        .addClass("col-sm-1 hour");
+        .addClass("col-2 col-md-1 hour")
+        .text(calendar[index].time);
 }
 
 function createTextarea(index) {
     return $("<textarea>")
         .attr("id", "textarea-" + index)
-        .addClass(`col-sm-9 ${getTimeIndicator(index, moment().format("HH"))}`)
+        .addClass("col description")
         .val(calendar[index].content);
 }
 
@@ -59,14 +59,14 @@ function getTimeIndicator(index, currentHour) {
 function createSaveButton(index) {
     return $("<button>")
         .attr("id", "saveButton-" + index)
-        .addClass("col-sm-1 btn fa fa-save saveBtn")
+        .addClass("col-1 btn fa fa-save saveBtn")
         .click(() => saveCalendarItem(index));
 }
 
 function createTrashButton(index) {
     return $("<button>")
         .attr("id", "trashButton-" + index)
-        .addClass("col-sm-1 btn fa fa-trash trashBtn")
+        .addClass("col-1 btn fa fa-trash trashBtn")
         .click(() => deleteCalendarItem(index));
 }
 
